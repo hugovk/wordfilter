@@ -1,12 +1,12 @@
 import os
 import unittest
-from wordfilter import Wordfilter
+import wordfilter
 
 
 class wordfilterTest(unittest.TestCase):
 
     def setUp(self):
-        self.wf = Wordfilter()
+        self.wf = wordfilter.Wordfilter()
 
     def test_detects_bad_words_in_a_string(self):
         self.assertTrue(isinstance(self.wf, object))
@@ -29,13 +29,23 @@ class wordfilterTest(unittest.TestCase):
         self.wf.add_words(['skank'])
         self.assertTrue(self.wf.blacklisted('this string contains the word skank'))
 
+    def test_added_words_checked_case_insensitively(self):
+        self.wf.add_words(['CLEAN']);
+        self.assertTrue(self.wf.blacklisted("this string was clean!"))
+
     def test_passed_list(self):
         '''Try to add a custom list'''
 
-        blacklist_wordfilter = Wordfilter(blacklist=['custom', 'word', 'list'])
+        blacklist_wordfilter = wordfilter.Wordfilter(blacklist=['custom', 'word', 'list'])
 
         self.assertTrue(blacklist_wordfilter.blacklisted('custom'))
         self.assertFalse(blacklist_wordfilter.blacklisted('skank'))
+
+    def test_add_words_in_iterable(self):
+        def word_generator():
+            yield 'test'
+        self.wf.add_words(word_generator())
+        self.assertTrue(expr)
 
     def test_custom_blacklist(self):
         '''Try to pass a txt file'''
@@ -50,6 +60,16 @@ class wordfilterTest(unittest.TestCase):
         self.assertFalse(datafile_wordfilter.blacklisted('skank'))
 
         os.remove(txt)
+
+    def test_module_instance(self):
+        self.assertTrue(wordfilter.blacklisted('this string contains mustard.'))
+
+        wordfilter.clear_list()
+        self.assertFalse(wordfilter.blacklisted('this string contains mustard.'))
+
+        wordfilter.add_words(['custom'])
+        self.assertTrue(wordfilter.blacklisted('you can use a custom blacklist.'))
+
 
 
 def main():

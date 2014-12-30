@@ -1,22 +1,33 @@
 #!/usr/bin/env python
-import os
 from setuptools import setup
 
-def read_file(file_name):
-    file_path = os.path.join(
-        os.path.dirname(__file__),
-        file_name
-    )
-    return open(file_path).read()
+try:
+    from pypandoc import convert
+
+    def read_md(f):
+        try:
+            return convert(f, 'rst')
+        except IOError:
+            return ''
+
+except ImportError:
+    print("pypandoc module not found, could not convert Markdown to RST")
+
+    def read_md(f):
+        try:
+            return open(f, 'r').read()
+        except IOError:
+            return ''
+
 
 setup(
     name=u'wordfilter',
 
-    version='0.1.7',
+    version='0.1.8',
 
     description="A small module meant for use in text generators that lets you filter strings for bad words.",
 
-    long_description=read_file('README.md'),
+    long_description=read_md('readme.md'),
 
     author=u'Darius Kazemi',
 
@@ -24,15 +35,17 @@ setup(
 
     url='http://tinysubversions.com',
 
-    license=read_file('LICENSE-MIT'),
+    license='MIT',
+
+    package_dir={'wordfilter': 'lib/wordfilter'},
 
     packages=['wordfilter'],
 
     zip_safe=False,
 
-    data_files=[
-        ('wordfilter', ['lib/badwords.json']),
-    ],
+    package_data={
+        'wordfilter': ['../badwords.json']
+    },
 
     classifiers=[
         "Programming Language :: Python",

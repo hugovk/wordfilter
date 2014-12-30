@@ -1,4 +1,4 @@
-from os import path
+from pkg_resources import resource_string
 import json
 
 # We'll need this to check if something is a string later.
@@ -7,6 +7,7 @@ try:
     basestring
 except NameError:
     basestring = str
+
 
 class Wordfilter(object):
 
@@ -24,18 +25,18 @@ class Wordfilter(object):
                 self.blacklist = f.read().splitlines()
 
         else:
-            datafile = path.join(path.dirname(__file__), 'badwords.json')
-            self.blacklist = json.load(open(datafile, 'r'))
+            data = resource_string('wordfilter', '../badwords.json').decode('utf-8')
+            self.blacklist = [s.lower() for s in json.loads(data, 'r')]
 
     def blacklisted(self, string):
         string = string.lower().strip()
-        self.blacklist = list(map(lambda s: s.lower(), self.blacklist))
         return any(word in string for word in self.blacklist)
 
     def add_words(self, lis):
         if isinstance(lis, basestring):
             lis = [lis]
-        self.blacklist.extend(lis)
+
+        self.blacklist.extend([s.lower() for s in lis])
 
     def clear_list(self):
         self.blacklist = []

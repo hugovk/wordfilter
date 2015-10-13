@@ -38,6 +38,13 @@ class Wordfilter(object):
 
         self.blacklist.extend([s.lower() for s in lis])
 
+    def remove_words(self, lis):
+        if isinstance(lis, basestring):
+            lis = [lis]
+
+        for s in lis:
+            self.blacklist.remove(s.lower())
+
     def clear_list(self):
         self.blacklist = []
 

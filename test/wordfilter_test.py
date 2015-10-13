@@ -81,6 +81,11 @@ class wordfilterTest(unittest.TestCase):
 
         os.remove(txt)
 
+    def test_remove_words(self):
+        self.wf.remove_words('biatch')
+        self.assertFalse(self.wf.blacklisted('biatch'))
+
+
     def test_module_instance(self):
         self.assertTrue(wordfilter.blacklisted('this string contains mustard.'))
 

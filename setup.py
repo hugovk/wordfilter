@@ -35,6 +35,8 @@ setup(
 
     test_suite='test',
 
+    use_2to3=True,
+
     classifiers=[
         "Programming Language :: Python",
     ],

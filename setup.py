@@ -33,6 +33,8 @@ setup(
         'wordfilter': ['../badwords.json']
     },
 
+    test_suite='test',
+
     classifiers=[
         "Programming Language :: Python",
     ],

@@ -1,14 +1,7 @@
-language: python
+language: php
 
-python:
-- "pypy"
-- "pypy3"
-- 2.6
-- 2.7
-- 3.2
-- 3.3
-- 3.4
-- 3.5
+php:
+- 5.6
 
 sudo: false
 

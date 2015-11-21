@@ -25,6 +25,10 @@ script:
 - grunt
 # Test Ruby:
 - rake test
+# Test PHP:
+- pushd test
+- php wordfilter_test.php
+- popd
 
 after_success:
 - coverage report

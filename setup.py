@@ -9,7 +9,7 @@ except IOError:
 setup(
     name='wordfilter',
 
-    version='0.1.9',
+    version='0.2.5',
 
     description="A small module meant for use in text generators that lets you filter strings for bad words.",
 

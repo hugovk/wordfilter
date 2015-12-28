@@ -3,19 +3,26 @@
 A small module meant for use in text generators that lets you filter strings for bad words.
 
 ## Getting Started
-Install the module with: `npm install wordfilter`
 
-```javascript
-var wordfilter = require('wordfilter');
-wordfilter.blacklisted('does this string have a bad word in it?'); // "false"
+Install the module with `pip install wordfilter`
 
-// clear the list entirely
-wordfilter.clearList();
+````python
+import wordfilter
+wordfilter.blacklisted("does this string have a bad word in it?")
+False
+````
 
-// add new words
-wordfilter.addWords(['zebra','elephant']);
-wordfilter.blacklisted('this string has zebra in it'); // "true"
-```
+Clear the list entirely:
+````python
+wordfilter.clear_list()
+````
+
+Add new words:
+````python
+wordfilter.add_words(["zebra", "elephant"])
+wordfilter.blacklisted("this string has zebra in it")
+True
+````
 
 ## Documentation
 This is a word filter adapted from code that I use in a lot of my twitter bots. It is based on [a list of words that I've hand-picked](https://github.com/dariusk/wordfilter/blob/master/lib/badwords.json) for exclusion from my bots: essentially, it's a list of things that I would not say myself. Generally speaking, they are "words of oppression", aka racist/sexist/ableist things that I would not say.

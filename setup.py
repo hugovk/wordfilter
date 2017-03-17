@@ -6,10 +6,13 @@ try:
 except IOError:
     readme = ''
 
+with open('lib/wordfilter/__init__.py') as i:
+    version = next(r for r in i.readlines() if '__version__' in r).split('=')[1].strip('"\' \n')
+
 setup(
     name='wordfilter',
 
-    version='0.2.6',
+    version=version,
 
     description="A small module meant for use in text generators that lets you filter strings for bad words.",
 

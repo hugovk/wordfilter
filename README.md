@@ -7,21 +7,22 @@ A small module meant for use in text generators that lets you filter strings for
 Install the module with `pip install wordfilter`
 
 ````python
-import wordfilter
-wordfilter.blacklisted("does this string have a bad word in it?")
+> import wordfilter
+> wordfilter.blacklisted("does this string have a bad word in it?")
 False
-````
 
-Clear the list entirely:
-````python
-wordfilter.clear_list()
-````
-
-Add new words:
-````python
-wordfilter.add_words(["zebra", "elephant"])
-wordfilter.blacklisted("this string has zebra in it")
+# add new words
+> wordfilter.add_words(["zebra", "elephant"])
+> wordfilter.blacklisted("this string has zebra in it")
 True
+
+# remove a word
+> wordfilter.remove_words('zebra')
+> wordfilter.blacklisted('this string has zebra in it')
+False
+
+# clear the list entirely
+> wordfilter.clear_list()
 ````
 
 ## Documentation

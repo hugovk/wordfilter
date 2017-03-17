@@ -85,7 +85,6 @@ class wordfilterTest(unittest.TestCase):
         self.wf.remove_words('biatch')
         self.assertFalse(self.wf.blacklisted('biatch'))
 
-
     def test_module_instance(self):
         self.assertTrue(wordfilter.blacklisted('this string contains mustard.'))
 
@@ -94,6 +93,9 @@ class wordfilterTest(unittest.TestCase):
 
         wordfilter.add_words(['custom'])
         self.assertTrue(wordfilter.blacklisted('you can use a custom blacklist.'))
+
+        wordfilter.remove_words(['custom'])
+        self.assertFalse(wordfilter.blacklisted('custom'))
 
 
 def main():

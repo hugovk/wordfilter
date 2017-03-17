@@ -1,5 +1,5 @@
-from pkg_resources import resource_string
 import json
+from pkg_resources import resource_string
 
 # We'll need this to check if something is a string later.
 # This isn't great, but it's better than a dependency on six.
@@ -29,7 +29,7 @@ class Wordfilter(object):
             self.blacklist = [s.lower() for s in json.loads(data, 'r')]
 
     def blacklisted(self, string):
-        string = string.lower().strip()
+        string = string.lower()
         return any(word in string for word in self.blacklist)
 
     def add_words(self, lis):
@@ -43,7 +43,10 @@ class Wordfilter(object):
             lis = [lis]
 
         for s in lis:
-            self.blacklist.remove(s.lower())
+            try:
+                self.blacklist.remove(s.lower())
+            except ValueError:
+                pass
 
     def clear_list(self):
         self.blacklist = []
@@ -53,3 +56,4 @@ _module_instance = Wordfilter()
 blacklisted = _module_instance.blacklisted
 add_words = _module_instance.add_words
 clear_list = _module_instance.clear_list
+remove_words = _module_instance.remove_words

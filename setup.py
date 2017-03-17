@@ -2,7 +2,7 @@
 from setuptools import setup
 
 try:
-    readme = open('README.md', 'r').read()
+    readme = open('README.rst', 'r').read()
 except IOError:
     readme = ''
 

@@ -12,6 +12,7 @@ sudo: false
 
 install:
 - python setup.py install
+- make README.rst
 
 script:
 - python setup.py test

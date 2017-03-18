@@ -1,5 +1,8 @@
 import os
-import unittest
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
 import wordfilter
 
 # Note that tests won't work with "python setup.py develop"

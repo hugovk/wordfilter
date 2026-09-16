@@ -5,7 +5,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="wordfilter",
-    version="0.2.7",
+    version="0.2.8",
     license="MIT",
     license_files=["LICENSE-MIT"],
     author="Darius Kazemi",

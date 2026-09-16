@@ -9,8 +9,10 @@ setup(
     license="MIT",
     license_files=["LICENSE-MIT"],
     author="Darius Kazemi",
-    description="""A small module meant for use in text generators that lets
-    you filter strings for bad words.""",
+    description=(
+        "A small module meant for use in text generators that lets "
+        "you filter strings for bad words."
+    ),
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/dariusk/wordfilter",

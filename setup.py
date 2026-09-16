@@ -7,6 +7,7 @@ setup(
     name="wordfilter",
     version="0.2.7",
     license="MIT",
+    license_files=["LICENSE-MIT"],
     author="Darius Kazemi",
     description="""A small module meant for use in text generators that lets
     you filter strings for bad words.""",
@@ -21,7 +22,6 @@ setup(
         "Programming Language :: Python :: 3",
         "Topic :: Communications",
         "Topic :: Text Processing :: Linguistic",
-        "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
         "Intended Audience :: Developers"
     ],
